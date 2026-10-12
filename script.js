@@ -1,45 +1,152 @@
 // ========================================
 // THE LIGHT | CRMP ROLEPLAY
-// Main JavaScript
+// MAIN JAVASCRIPT
 // ========================================
 
 
-// 1. UPDATE THE COPYRIGHT YEAR
+// ================= SERVER =================
 
-const yearElement = document.getElementById("currentYear");
+const serverIP = "188.127.241.74:4400";
+
+
+// ================= COPYRIGHT =================
+
+const yearElement =
+    document.getElementById("currentYear");
 
 if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
 }
 
 
-// 2. SMOOTH SCROLL FOR WEBSITE NAVIGATION
+// ================= COPY SERVER IP =================
 
-document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener("click", function (event) {
-        const targetId = this.getAttribute("href");
+const copyButton =
+    document.getElementById("copyIPButton");
 
-        if (targetId === "#") {
-            event.preventDefault();
-            return;
-        }
+const copyButton2 =
+    document.getElementById("copyIPButton2");
 
-        const target = document.querySelector(targetId);
 
-        if (target) {
-            event.preventDefault();
+function copyServerIP() {
 
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+    if (
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+    ) {
+
+        navigator.clipboard
+            .writeText(serverIP)
+            .then(function () {
+
+                alert(
+                    "Server IP copied!\n\n" +
+                    serverIP
+                );
+
+            })
+            .catch(function () {
+
+                alert(
+                    "Server IP:\n\n" +
+                    serverIP
+                );
+
             });
 
-            history.replaceState(null, "", targetId);
+    } else {
+
+        alert(
+            "Server IP:\n\n" +
+            serverIP
+        );
+
+    }
+
+}
+
+
+if (copyButton) {
+
+    copyButton.addEventListener(
+        "click",
+        copyServerIP
+    );
+
+}
+
+
+if (copyButton2) {
+
+    copyButton2.addEventListener(
+        "click",
+        copyServerIP
+    );
+
+}
+
+
+// ================= SMOOTH NAVIGATION =================
+
+const navigationLinks =
+    document.querySelectorAll(
+        'a[href^="#"]'
+    );
+
+
+navigationLinks.forEach(function (link) {
+
+    link.addEventListener(
+        "click",
+        function (event) {
+
+            const targetId =
+                this.getAttribute("href");
+
+
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+
+                return;
+
+            }
+
+
+            const target =
+                document.querySelector(
+                    targetId
+                );
+
+
+            if (target) {
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
         }
-    });
+    );
+
 });
 
 
-// 3. WELCOME MESSAGE IN THE BROWSER CONSOLE
+// ================= CONSOLE =================
 
-console.log("THE LIGHT CRMP ROLEPLAY website loaded successfully!");
+console.log(
+    "THE LIGHT | CRMP ROLEPLAY loaded successfully."
+);
+
+console.log(
+    "Server IP: " + serverIP
+);
