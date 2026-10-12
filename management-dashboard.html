@@ -1,59 +1,487 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
+    <meta charset="UTF-8"><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta charset="UTF-8">
+<title>Management Dashboard | THE LIGHT CRMP</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link rel="stylesheet" href="./style.css">
 
-    <title>
-        Management Dashboard | THE LIGHT CRMP
-    </title>
+<style>
+    .management-layout {
+        display: flex;
+        min-height: 100vh;
+        background: #100d1b;
+        color: #fff;
+    }
 
-    <link rel="stylesheet" href="./style.css">
+    .management-sidebar {
+        width: 240px;
+        flex-shrink: 0;
+        padding: 25px 15px;
+        background: #191329;
+        border-right: 1px solid #392750;
+    }
 
-</head>
+    .management-sidebar h2 {
+        color: #c084fc;
+        margin-bottom: 8px;
+    }
 
-<body>
+    .management-sidebar p {
+        color: #b8a9ca;
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
 
-    <main class="auth-page">
+    .management-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
-        <div class="auth-card">
+    .management-menu button {
+        width: 100%;
+        padding: 13px;
+        text-align: left;
+        background: #241b35;
+        color: #eee5ff;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-            <h1>THE LIGHT</h1>
+    .management-menu button.active,
+    .management-menu button:hover {
+        background: #6035a3;
+        border-color: #a879ed;
+    }
 
-            <p class="auth-subtitle">
-                MANAGEMENT DASHBOARD
-            </p>
+    .management-main {
+        flex: 1;
+        min-width: 0;
+        padding: 30px;
+    }
 
+    .management-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
 
-            <div id="managerWelcome">
-                Loading management account...
-            </div>
+    .management-topbar h1 {
+        font-size: 25px;
+        margin-bottom: 8px;
+    }
 
+    .management-topbar p {
+        color: #b8a9ca;
+        font-size: 14px;
+    }
 
-            <br>
+    .management-panel {
+        padding: 24px;
+        margin-bottom: 24px;
+        background: #191329;
+        border: 1px solid #392750;
+        border-radius: 12px;
+    }
 
+    .management-panel h2 {
+        font-size: 19px;
+        margin-bottom: 18px;
+        color: #d8b4fe;
+    }
+
+    .management-form {
+        display: grid;
+        gap: 14px;
+    }
+
+    .management-form label {
+        display: block;
+        margin-bottom: 7px;
+        color: #e5d9f7;
+        font-size: 14px;
+    }
+
+    .management-form input,
+    .management-form textarea {
+        width: 100%;
+        padding: 12px;
+        color: #fff;
+        background: #100d1b;
+        border: 1px solid #49345f;
+        border-radius: 7px;
+        font: inherit;
+    }
+
+    .management-form textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .management-form input:focus,
+    .management-form textarea:focus {
+        outline: 2px solid #8b5cf6;
+        border-color: #8b5cf6;
+    }
+
+    .management-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .management-actions button,
+    .management-topbar button {
+        padding: 11px 16px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .management-save {
+        color: #fff;
+        background: #7138c8;
+    }
+
+    .management-clear {
+        color: #fff;
+        background: #40334f;
+    }
+
+    .management-logout {
+        color: #fff;
+        background: #a52d52;
+    }
+
+    .management-message {
+        margin-top: 15px;
+        overflow-wrap: anywhere;
+        color: #d8b4fe;
+        font-size: 14px;
+    }
+
+    .management-record {
+        padding: 17px;
+        margin-bottom: 12px;
+        background: #100d1b;
+        border: 1px solid #392750;
+        border-radius: 8px;
+        overflow-wrap: anywhere;
+    }
+
+    .management-record h3 {
+        color: #d8b4fe;
+        margin-bottom: 8px;
+    }
+
+    .management-record p {
+        color: #d1c5df;
+        margin-bottom: 12px;
+        white-space: pre-wrap;
+    }
+
+    .management-record-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .management-record-actions button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .management-edit {
+        background: #6542a3;
+    }
+
+    .management-delete {
+        background: #a52d52;
+    }
+
+    .management-empty {
+        color: #b8a9ca;
+        padding: 15px 0;
+    }
+
+    @media (max-width: 760px) {
+        .management-layout {
+            flex-direction: column;
+        }
+
+        .management-sidebar {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid #392750;
+        }
+
+        .management-menu {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .management-menu button {
+            font-size: 12px;
+            padding: 11px 8px;
+        }
+
+        .management-main {
+            padding: 18px 12px;
+        }
+
+        .management-panel {
+            padding: 17px;
+        }
+    }
+</style>
+
+</head><body><div class="management-layout">
+
+    <aside class="management-sidebar">
+
+        <h2>THE LIGHT</h2>
+
+        <p>CRMP MANAGEMENT PANEL</p>
+
+        <nav class="management-menu">
 
             <button
+                type="button"
+                class="active"
+                data-section="factions"
+            >
+                🏢 Factions
+            </button>
+
+            <button
+                type="button"
+                data-section="jobs"
+            >
+                💼 Jobs
+            </button>
+
+            <button
+                type="button"
+                data-section="server_rules"
+            >
+                📜 Server Rules
+            </button>
+
+            <button
+                type="button"
+                data-section="announcements"
+            >
+                📰 News & Announcements
+            </button>
+
+            <button
+                type="button"
+                data-section="downloads"
+            >
+                📥 Downloads
+            </button>
+
+            <button
+                type="button"
+                data-section="site_settings"
+            >
+                ⚙️ Website Settings
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="management-main">
+
+        <header class="management-topbar">
+
+            <div>
+                <h1>Management Dashboard</h1>
+
+                <p id="managerWelcome">
+                    Verifying management account...
+                </p>
+            </div>
+
+            <button
+                type="button"
                 id="logoutButton"
-                class="btn primary-btn"
+                class="management-logout"
             >
                 LOGOUT
             </button>
 
-        </div>
+        </header>
+
+
+        <section class="management-panel">
+
+            <h2 id="sectionTitle">
+                Manage Factions
+            </h2>
+
+            <form
+                id="managementForm"
+                class="management-form"
+            >
+
+                <div>
+                    <label for="recordTitle">
+                        Name / Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recordTitle"
+                        maxlength="150"
+                        placeholder="Enter name or title"
+                        required
+                    >
+                </div>
+
+
+                <div id="descriptionField">
+
+                    <label for="recordDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="recordDescription"
+                        maxlength="5000"
+                        placeholder="Enter description"
+                    ></textarea>
+
+                </div>
+
+
+                <div id="contentField" hidden>
+
+                    <label for="recordContent">
+                        Content
+                    </label>
+
+                    <textarea
+                        id="recordContent"
+                        maxlength="10000"
+                        placeholder="Enter content"
+                    ></textarea>
+
+                </div>
+
+
+                <div id="urlField" hidden>
+
+                    <label for="recordURL">
+                        Download URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="recordURL"
+                        maxlength="2000"
+                        placeholder="https://example.com/download"
+                    >
+
+                </div>
+
+
+                <div
+                    id="settingKeyField"
+                    hidden
+                >
+
+                    <label for="settingKey">
+                        Setting Key
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settingKey"
+                        maxlength="100"
+                        placeholder="Example: server_ip"
+                    >
+
+                </div>
+
+
+                <div class="management-actions">
+
+                    <button
+                        type="submit"
+                        id="saveRecordButton"
+                        class="management-save"
+                    >
+                        SAVE
+                    </button>
+
+                    <button
+                        type="button"
+                        id="clearFormButton"
+                        class="management-clear"
+                    >
+                        CLEAR FORM
+                    </button>
+
+                </div>
+
+                <p
+                    id="managementMessage"
+                    class="management-message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+
+        </section>
+
+
+        <section class="management-panel">
+
+            <h2 id="recordsTitle">
+                Existing Factions
+            </h2>
+
+            <div id="managementRecords">
+
+                <p class="management-empty">
+                    Loading records...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <p style="text-align:center; color:#9989ad; font-size:12px;">
+            THE LIGHT CRMP ROLEPLAY | MANAGEMENT
+        </p>
 
     </main>
 
+</div>
 
-    <script
-        type="module"
-        src="./management-dashboard.js"
-    ></script>
+
+<script
+    type="module"
+    src="./management-dashboard.js"
+></script>
 
 </body>
 </html>
