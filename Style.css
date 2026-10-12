@@ -1,0 +1,756 @@
+/* =========================================
+   THE LIGHT | CRMP ROLEPLAY
+   Main Website Stylesheet
+========================================= */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    background: #080812;
+    color: #f4f4ff;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1120px, 90%);
+    margin: 0 auto;
+}
+
+/* COLORS */
+:root {
+    --background: #080812;
+    --background-light: #101020;
+    --card-background: #131329;
+    --purple: #a855f7;
+    --purple-dark: #7c3aed;
+    --blue: #22d3ee;
+    --text: #f4f4ff;
+    --muted: #a4a4c2;
+    --border: rgba(168, 85, 247, 0.22);
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+    width: 100%;
+    background: rgba(8, 8, 18, 0.96);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+}
+
+.nav-content {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--purple);
+    text-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 80% 30%,
+            rgba(124, 58, 237, 0.22),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 15% 85%,
+            rgba(34, 211, 238, 0.10),
+            transparent 40%
+        ),
+        #080812;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+    background-size: 45px 45px;
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 95%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+.hero-label,
+.section-label {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 8vw, 82px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--purple);
+    text-shadow: 0 0 35px rgba(168, 85, 247, 0.45);
+}
+
+.hero-description {
+    max-width: 590px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 32px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.button {
+    min-height: 50px;
+    padding: 13px 25px;
+    border-radius: 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button-primary {
+    color: white;
+    background: linear-gradient(
+        135deg,
+        var(--purple),
+        var(--purple-dark)
+    );
+    box-shadow: 0 8px 28px rgba(124, 58, 237, 0.28);
+}
+
+.button-primary:hover {
+    box-shadow: 0 10px 35px rgba(168, 85, 247, 0.45);
+}
+
+.button-secondary {
+    color: var(--blue);
+    background: rgba(34, 211, 238, 0.04);
+    border: 1px solid rgba(34, 211, 238, 0.4);
+}
+
+.button-secondary:hover {
+    background: rgba(34, 211, 238, 0.1);
+}
+
+/* =========================================
+   HERO STATISTICS
+========================================= */
+
+.hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+    border-top: 1px solid var(--border);
+    padding-top: 25px;
+    max-width: 650px;
+}
+
+.hero-stats h3 {
+    color: var(--text);
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.hero-stats p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
+
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.section-alt {
+    background: var(--background-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.035);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+}
+
+.section-title {
+    color: var(--text);
+    font-size: clamp(27px, 4vw, 42px);
+    line-height: 1.25;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.section-title span {
+    color: var(--purple);
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 690px;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+}
+
+/* =========================================
+   CARD GRID
+========================================= */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.info-card {
+    padding: 30px 25px;
+    background: linear-gradient(
+        145deg,
+        rgba(25, 25, 53, 0.96),
+        rgba(15, 15, 32, 0.96)
+    );
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.info-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--purple),
+        var(--blue)
+    );
+    transition: width 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.65);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.info-card:hover::before {
+    width: 100%;
+}
+
+.card-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.18);
+    border-radius: 12px;
+    font-size: 27px;
+    margin-bottom: 22px;
+}
+
+.info-card h3 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   FACTIONS
+========================================= */
+
+.faction-card {
+    border-top: 2px solid rgba(168, 85, 247, 0.4);
+}
+
+.faction-card:nth-child(even) {
+    border-top-color: rgba(34, 211, 238, 0.4);
+}
+
+.faction-card:hover {
+    border-top-color: var(--purple);
+}
+
+/* =========================================
+   JOBS
+========================================= */
+
+.job-card {
+    background: var(--card-background);
+}
+
+.job-card .card-icon {
+    background: rgba(34, 211, 238, 0.08);
+    border-color: rgba(34, 211, 238, 0.2);
+}
+
+/* =========================================
+   SERVER SECTION
+========================================= */
+
+.server-box {
+    padding: 60px 35px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background:
+        radial-gradient(
+            ellipse at top,
+            rgba(124, 58, 237, 0.16),
+            transparent 65%
+        ),
+        #101020;
+}
+
+.server-box .section-description {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.server-address {
+    display: inline-block;
+    min-width: 280px;
+    max-width: 100%;
+    padding: 18px 30px;
+    background: #080812;
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    border-radius: 9px;
+}
+
+.server-address span {
+    display: block;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.server-address p {
+    color: white;
+    font-size: 19px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.server-note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+/* =========================================
+   RULES
+========================================= */
+
+.rules-list {
+    max-width: 800px;
+    display: grid;
+    gap: 15px;
+}
+
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 23px;
+    background: var(--card-background);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.rule-item > span {
+    color: var(--purple);
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.4;
+}
+
+.rule-item h3 {
+    color: var(--text);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.rule-item p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   DOWNLOAD SECTION
+========================================= */
+
+.download-section {
+    text-align: center;
+    background:
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(124, 58, 237, 0.14),
+            transparent 60%
+        ),
+        var(--background);
+}
+
+.download-section .section-description {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-section .hero-buttons {
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    padding: 45px 0 25px;
+    background: #06060d;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.footer .logo {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.footer p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin: 25px 0;
+}
+
+.footer-links a {
+    color: var(--muted);
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--blue);
+}
+
+.copyright {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 11px !important;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN: TABLETS
+========================================= */
+
+@media (max-width: 900px) {
+    .nav-content {
+        flex-direction: column;
+        justify-content: center;
+        padding: 15px 0;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 20px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero {
+        min-height: 580px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN: MOBILE PHONES
+========================================= */
+
+@media (max-width: 600px) {
+    html {
+        scroll-padding-top: 120px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .nav-content {
+        padding: 13px 0;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-links {
+        gap: 8px 15px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding-top: 75px;
+        padding-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-label,
+    .section-label {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-stats {
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+    .hero-stats h3 {
+        font-size: 11px;
+    }
+
+    .hero-stats p {
+        font-size: 10px;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .section-title {
+        font-size: 29px;
+    }
+
+    .section-description {
+        font-size: 13px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .info-card {
+        padding: 25px 22px;
+    }
+
+    .server-box {
+        padding: 40px 20px;
+    }
+
+    .server-address {
+        width: 100%;
+        min-width: 0;
+        padding: 17px 12px;
+    }
+
+    .server-address p {
+        font-size: 16px;
+    }
+
+    .rule-item {
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .rule-item h3 {
+        font-size: 14px;
+    }
+
+    .rule-item p {
+        font-size: 12px;
+    }
+
+    .footer-links {
+        gap: 14px;
+    }
+}
+
+/* =========================================
+   SMALL MOBILE PHONES
+========================================= */
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    .nav-links {
+        gap: 7px 10px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .hero-stats {
+        gap: 12px;
+    }
+}
