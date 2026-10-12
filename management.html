@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Management Login | THE LIGHT CRMP</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <h1>THE LIGHT</h1>
+
+            <p class="auth-subtitle">
+                MANAGEMENT LOGIN
+            </p>
+
+            <form id="managementLoginForm">
+
+                <label for="managementEmail">
+                    Management Email
+                </label>
+
+                <input
+                    type="email"
+                    id="managementEmail"
+                    placeholder="Enter management email"
+                    required
+                >
+
+                <label for="managementPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="managementPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn primary-btn"
+                >
+                    MANAGEMENT LOGIN
+                </button>
+
+                <p id="managementMessage"></p>
+
+            </form>
+
+            <p class="auth-link">
+                <a href="./index.html">
+                    ← Back to website
+                </a>
+            </p>
+
+        </div>
+
+    </main>
+
+    <script
+        type="module"
+        src="./management.js"
+    ></script>
+
+</body>
+</html>
