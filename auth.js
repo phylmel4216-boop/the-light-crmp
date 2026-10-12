@@ -1,16 +1,22 @@
 // ========================================
 // THE LIGHT CRMP
-// SUPABASE AUTHENTICATION
+// SUPABASE PLAYER AUTHENTICATION
 // ========================================
 
 import { createClient } from
     "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+
+// ========================================
+// SUPABASE CONFIGURATION
+// ========================================
+
 const SUPABASE_URL =
     "https://mepfggtjvuenkhtknojz.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-    "YOUR_PUBLISHABLE_KEY_HERE";
+    "sb_publishable_xmt_xMOhEGhmq6Yw9oBnsg_1wujHnVq";
+
 
 const supabase = createClient(
     SUPABASE_URL,
@@ -19,7 +25,7 @@ const supabase = createClient(
 
 
 // ========================================
-// REGISTER
+// REGISTER PLAYER
 // ========================================
 
 const registerForm =
@@ -55,39 +61,99 @@ if (registerForm) {
                     "registerMessage"
                 );
 
-            message.textContent =
-                "Creating your account...";
+            message.textContent = "";
 
-            const { error } =
-                await supabase.auth.signUp({
-                    email: email,
-                    password: password,
-                    options: {
-                        data: {
-                            username: username
-                        }
-                    }
-                });
 
-            if (error) {
+            if (
+                username.length < 3 ||
+                username.length > 24
+            ) {
 
                 message.textContent =
-                    error.message;
+                    "Username must be between 3 and 24 characters.";
 
                 return;
             }
 
-            message.textContent =
-                "Registration successful! Check your email to confirm your account.";
 
-            registerForm.reset();
+            if (password.length < 6) {
+
+                message.textContent =
+                    "Password must contain at least 6 characters.";
+
+                return;
+            }
+
+
+            message.textContent =
+                "Creating your account...";
+
+
+            try {
+
+                const { data, error } =
+                    await supabase.auth.signUp({
+
+                        email: email,
+
+                        password: password,
+
+                        options: {
+
+                            data: {
+                                username: username
+                            }
+
+                        }
+
+                    });
+
+
+                if (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+                    message.textContent =
+                        error.message;
+
+                    return;
+                }
+
+
+                console.log(
+                    "Registration successful:",
+                    data
+                );
+
+
+                message.textContent =
+                    "Registration successful! Check your email to confirm your account.";
+
+                registerForm.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unexpected registration error:",
+                    error
+                );
+
+                message.textContent =
+                    "Something went wrong. Please try again.";
+
+            }
+
         }
     );
 }
 
 
 // ========================================
-// LOGIN
+// LOGIN PLAYER
 // ========================================
 
 const loginForm =
@@ -117,30 +183,67 @@ if (loginForm) {
                     "loginMessage"
                 );
 
+
             message.textContent =
                 "Logging in...";
 
-            const { error } =
-                await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
 
-            if (error) {
+            try {
+
+                const { data, error } =
+                    await supabase.auth.signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+                if (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+                    message.textContent =
+                        error.message;
+
+                    return;
+                }
+
+
+                console.log(
+                    "Login successful:",
+                    data
+                );
+
 
                 message.textContent =
-                    error.message;
+                    "Login successful!";
 
-                return;
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "./index.html";
+
+                }, 800);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unexpected login error:",
+                    error
+                );
+
+                message.textContent =
+                    "Something went wrong. Please try again.";
+
             }
 
-            message.textContent =
-                "Login successful!";
-
-            setTimeout(function () {
-                window.location.href =
-                    "./index.html";
-            }, 800);
         }
     );
 }
